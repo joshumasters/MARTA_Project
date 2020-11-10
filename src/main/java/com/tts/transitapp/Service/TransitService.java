@@ -79,4 +79,11 @@ public class TransitService {
         Collections.sort(nearbyBuses, new BusComparator());
         return nearbyBuses;
 }
+
+    public Location getUserLocation(BusRequest request){
+        Location personLocation = this.getCoordinates(request.address + " " + request.city);
+        System.out.println(personLocation);
+        return personLocation;
+
+    }
 }

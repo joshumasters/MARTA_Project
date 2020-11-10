@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.tts.transitapp.Model.Bus;
 import com.tts.transitapp.Model.BusRequest;
+import com.tts.transitapp.Model.Location;
 import com.tts.transitapp.Service.TransitService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,10 @@ public class TransitController {
     @PostMapping("/buses")
     public String getNearbyBuses(BusRequest request, Model model) {
         List<Bus> buses = transitService.getNearbyBuses(request);
+        Location userLocation = transitService.getUserLocation(request);
         model.addAttribute("buses", buses);
-        model.addAttribute("request", request);    
+        model.addAttribute("request", request);  
+        model.addAttribute("userLocation", userLocation);  
         return "index";
     }
 }
